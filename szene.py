@@ -1,4 +1,4 @@
-# -*- coding: cp1252 -*-
+# -*- coding: utf-8 -*-
 
 def myInput(prompt):
     try:
@@ -24,15 +24,17 @@ class demoEnd():
     def __init__(self,name,szenenid):
         self.__name = name
         self.__szenenid = szenenid
+    def getName(self):
+        return("")
     def play(self,player):
         print(u'''
 *****Das Ende*****
 
-Vielen Dank das Sie das TextAdventure von RöGy Studio durchgespielt haben! Leider ist das Spiel noch nicht fertig. Besuchen sie uns auf {webadresse}.
-Es wird sich noch viel verändern. Also lohnt es sich, immer mal wieder vorbei zugucken! Wir wünschen ihnen noch einen schönen Tag. Sprechen sie uns doch
+Vielen Dank das Sie das TextAdventure von RÃ¶Gy Studio durchgespielt haben! Leider ist das Spiel noch nicht fertig. Besuchen sie uns auf https://roegy-studios.jimdofree.com oder https://bit.ly/2CKhjyo.
+Es wird sich noch viel verÃ¤ndern. Also lohnt es sich, immer mal wieder vorbei zugucken! Wir wÃ¼nschen ihnen noch einen schÃ¶nen Tag. Sprechen sie uns doch
 einfach mal an!
 ******************
-Außerdem währe es nett, jetzt uns anzusprechen damit wir das Spiel neustarten.
+AuÃŸerdem wÃ¤hre es nett, jetzt uns anzusprechen damit wir das Spiel neustarten.
 ''')
         ti.sleep(10)
         return(-1)
@@ -156,6 +158,9 @@ class szeneStandart():
         else:
             if self.__boarder == True:
                 print("-----------------------------------") #Spaeter responsiv
+##            for el in self.__text:
+##                print(el,end='')
+##            print("")
             print(self.__text)
             
             if self.__boarder == True:
@@ -202,7 +207,8 @@ class szeneStandart():
                           
                 (1) Fortsetzen
                 (2) Speichern
-                (3) Beenden
+                (3) Hauptmenu
+                (4) Beenden
 
 
 ''')
@@ -217,6 +223,8 @@ class szeneStandart():
                         print("Speichere...")
                         player.speichern()
                     elif tempIn == "3":
+                        return(-2)
+                    elif tempIn == "4":
                         print("Wirklich beenden? (y/n)")
                         temp2 = myInput("-> ")
                         if temp2 == "y":

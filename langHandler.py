@@ -1,4 +1,5 @@
 import sys
+import codecs
 def initLang(lang):
     #print(type(lang))
     if lang[2] != "_":
@@ -14,17 +15,25 @@ def initLang(lang):
         print("[Info] Unsupported System")
         raise SystemError("Unsupported System")
     #fileName =
-    file = open(fileName,"r")
+    #file = open(fileName,"r")
+    file = codecs.open(fileName, "r", "utf-8")
     content = file.readlines()
     file.close()
     #print(content)
    # print(len(content))
     out = {}
+    linesI = 0
     for line in content:
         temp = line.split("=")
-        temp[1] = temp[1][:len(temp[1])-1]
-        out[temp[0]] = temp[1]
+        try:
+            temp[1] = temp[1][:len(temp[1])-1]
+            out[temp[0]] = temp[1]
+        except IndexError:
+            linesI += 1
+        
         
         #print(temp)
-    
+    tmp = "Ignored lines: "
+    tmp += str(linesI)
+    print(tmp)
     return(out)

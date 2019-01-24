@@ -11,6 +11,10 @@ from time import sleep
 temp1 = 0
 
 langD = initLang("DE_DE")
+
+def barText(mySelf,player):
+    print("Du gehst an den Bartresen, aber man schickt dich weg!")
+
 def text1(mySelf,player):
     global temp1
     #global la
