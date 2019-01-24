@@ -1,10 +1,16 @@
-# -*- coding: cp1252 -*-
+# -*- coding: UTF-8 -*-
 from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 import time
 import os
 import sys
 import game
+try:
+    from logger import *
+except:
+    print("[ERROR] logger not found")
+    exit()
+
 def myInput(prompt):
     try:
         temp = raw_input(prompt)
@@ -14,19 +20,12 @@ def myInput(prompt):
 
 
 
-
-
 run = True
 run2 = True
 exite = False
 exitB = False
 error = 0
 
-try:
-    from logger import *
-except:
-    print("[ERROR] logger not found")
-    exit()
 try:
     if sys.argv[1] == "--help" or sys.argv[1] == "-h":
         print("")
@@ -127,70 +126,84 @@ if exite:
 
 
 
-while run == True:
-    print(r"""
- _______        _               _                 _                
-|__   __|      | |     /\      | |               | |               
-   | | _____  _| |_   /  \   __| |_   _____ _ __ | |_ _   _ _ __ ___ 
-   | |/ _ \ \/ / __| / /\ \ / _` \ \ / / _ \ '_ \| __| | | | '__/ _ \
-   | |  __/>  <| |_ / ____ \ (_| |\ V /  __/ | | | |_| |_| | | |  __/
-   |_|\___/_/\_\\__/_/    \_\__,_| \_/ \___|_| |_|\__|\__,_|_|  \___|
-     ----------------------------Menu--------------------------
-                     1> Spielen
-                     2> Einstellungen
-                     3> Credits
-                     4> Verlassen
-    """)
-    eingabe = myInput("-> ")
-    details = "Niedrig"
-    if eingabe == "1":
-        game.gamestart()
-        run = False
-    elif eingabe == "2":
-        run2 = True
-        while run2 == True:
+
+def showMenu():
+    global run
+    global run2
+    global exite
+    global exitB
+    global error
+
+    
+    
+
+
+    while run == True:
+        print(r"""
+     _______        _               _                 _                
+    |__   __|      | |     /\      | |               | |               
+       | | _____  _| |_   /  \   __| |_   _____ _ __ | |_ _   _ _ __ ___ 
+       | |/ _ \ \/ / __| / /\ \ / _` \ \ / / _ \ '_ \| __| | | | '__/ _ \
+       | |  __/>  <| |_ / ____ \ (_| |\ V /  __/ | | | |_| |_| | | |  __/
+       |_|\___/_/\_\\__/_/    \_\__,_| \_/ \___|_| |_|\__|\__,_|_|  \___|
+         ----------------------------Menu--------------------------
+                         1> Spielen
+                         2> Einstellungen
+                         3> Credits
+                         4> Verlassen
+        """)
+        eingabe = myInput("-> ")
+        details = "Niedrig"
+        if eingabe == "1":
+            game.gamestart()
+            run = False
+        elif eingabe == "2":
+            run2 = True
+            while run2 == True:
+                print('''
+                --------Einstellungen--------
+
+                    **Grafik**
+                        1> Details: Wenig
+                    2> Verlassen
+
+                ''')
+                eingabe2 = myInput("-> ")
+                if eingabe2 == "1":
+                    print("Zurzeit nicht verfÃ¼gbar");
+                elif eingabe2 == "2":
+                    run2 = False
+        elif eingabe == "3":
+            i = 0
             print('''
-            --------Einstellungen--------
-
-                **Grafik**
-                    1> Details: Wenig
-                2> Verlassen
-
+               _____ _____  ______ _____ _____ _______ _____ 
+              / ____|  __ \|  ____|  __ \_   _|__   __/ ____|
+             | |    | |__) | |__  | |  | || |    | | | (___  
+             | |    |  _  /|  __| | |  | || |    | |  \___ \ 
+             | |____| | \ \| |____| |__| || |_   | |  ____) |
+              \_____|_|  \_\______|_____/_____|  |_| |_____/ 
+                                                             
+                                                             
             ''')
-            eingabe2 = myInput("-> ")
-            if eingabe2 == "1":
-                print("Zurzeit nicht verfügbar");
-            elif eingabe2 == "2":
-                run2 = False
-    elif eingabe == "3":
-        i = 0
-        print('''
-           _____ _____  ______ _____ _____ _______ _____ 
-          / ____|  __ \|  ____|  __ \_   _|__   __/ ____|
-         | |    | |__) | |__  | |  | || |    | | | (___  
-         | |    |  _  /|  __| | |  | || |    | |  \___ \ 
-         | |____| | \ \| |____| |__| || |_   | |  ____) |
-          \_____|_|  \_\______|_____/_____|  |_| |_____/ 
-                                                         
-                                                         
-        ''')
-        #creditsT = ['I', 'd', 'e', 'e', ' ', 'f', 'ü', 'r', ' ', 'd', 'a', 's', ' ', 'T', 'e', 'x', 't', 'A', 'd', 'v', 'e', 'n', 't', 'u', 'r', 'e', ':', ' ', 'M', 'a', 't', 't', 'h', 'i', 'a', 's', ' ', 'H', 'e', 'm', 'i', 'n', 'g', '\n', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k', ':', ' ', 'J', 'o', 's', 'h', 'u', 'a', ' ', 'Z', 'o', 'b', 'e', 'l', ' ', 'u', 'n', 'd', ' ', 'S', 'ö', 'r', 'e', 'n', ' ', 'O', 'e', 's', 't', 'e', 'r', 'w', 'i', 'n', 'd', '\n', 'S', 't', 'o', 'r', 'y', ':', ' ', 'J', 'o', 's', 'h', 'u', 'a', ' ', 'Z', 'o', 'b', 'e', 'l', '\n', 'T', 'e', 'x', 't', 'e', ':', ' ', 'S', 'ö', 'r', 'e', 'n', ' ', 'O', 'e', 's', 't', 'e', 'r', 'w', 'i', 'n', 'd', ' ', 'u', 'n', 'd', ' ', 'J', 'o', 's', 'h', 'u', 'a', ' ', 'Z', 'o', 'b', 'e', 'l', '\n']
-        creditsT = "Idee für das TextAdventure: Matthias Heming \nFramework: Joshua Zobel und Sören Oesterwind\nStory: Joshua Zobel\nTexte: Sören Oesterwind und Joshua Zobel\n\n"
-        for el in creditsT:
-            print(el,end='')
-            time.sleep(0.2)
-        time.sleep(5)
-##        time.sleep(5)
-##        print("Idee für ein TextAdventure: Matthias Heming")
-##        time.sleep(5)
-##        print("Framework: Joshua Zobel und Sören Oesterwind")
-##        time.sleep(5)
-##        print("Story: Joshua Zobel")
-##        time.sleep(5)
-    elif eingabe == "4":
-        exitB = True
-        run = False
+            #creditsT = ['I', 'd', 'e', 'e', ' ', 'f', 'Ã¼', 'r', ' ', 'd', 'a', 's', ' ', 'T', 'e', 'x', 't', 'A', 'd', 'v', 'e', 'n', 't', 'u', 'r', 'e', ':', ' ', 'M', 'a', 't', 't', 'h', 'i', 'a', 's', ' ', 'H', 'e', 'm', 'i', 'n', 'g', '\n', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k', ':', ' ', 'J', 'o', 's', 'h', 'u', 'a', ' ', 'Z', 'o', 'b', 'e', 'l', ' ', 'u', 'n', 'd', ' ', 'S', 'Ã¶', 'r', 'e', 'n', ' ', 'O', 'e', 's', 't', 'e', 'r', 'w', 'i', 'n', 'd', '\n', 'S', 't', 'o', 'r', 'y', ':', ' ', 'J', 'o', 's', 'h', 'u', 'a', ' ', 'Z', 'o', 'b', 'e', 'l', '\n', 'T', 'e', 'x', 't', 'e', ':', ' ', 'S', 'Ã¶', 'r', 'e', 'n', ' ', 'O', 'e', 's', 't', 'e', 'r', 'w', 'i', 'n', 'd', ' ', 'u', 'n', 'd', ' ', 'J', 'o', 's', 'h', 'u', 'a', ' ', 'Z', 'o', 'b', 'e', 'l', '\n']
+            creditsT = "Idee fÃ¼r das TextAdventure: Matthias Heming \nFramework: Joshua Zobel und SÃ¶ren Oesterwind\nStory: Joshua Zobel\nTexte: SÃ¶ren Oesterwind und Joshua Zobel\n\n"
+            for el in creditsT:
+                print(el,end='')
+                time.sleep(0.2)
+            time.sleep(5)
+    ##        time.sleep(5)
+    ##        print("Idee fÃ¼r ein TextAdventure: Matthias Heming")
+    ##        time.sleep(5)
+    ##        print("Framework: Joshua Zobel und SÃ¶ren Oesterwind")
+    ##        time.sleep(5)
+    ##        print("Story: Joshua Zobel")
+    ##        time.sleep(5)
+        elif eingabe == "4":
+            exitB = True
+            run = False
 
-if exitB == True:
-    exit()
+    if exitB == True:
+        exit()
 
+if __name__=="__main__":
+    showMenu()
