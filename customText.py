@@ -14,6 +14,7 @@ langD = initLang("DE_DE")
 
 def barText(mySelf,player):
     print("Du gehst an den Bartresen, aber man schickt dich weg!")
+    return(1)
 
 def text1(mySelf,player):
     global temp1
@@ -26,10 +27,10 @@ def text1(mySelf,player):
         print(langD["text2_p2"])
         return(1)
         temp1 +=1
-def text2(mySelf):
+def text2(mySelf,player):
     print(langD["T_nachbar_look"])
     print(langD["T_nachbar_1"])
-    return(0)
+    return(1)
     
 def karte(mySelf,player):
     print('''

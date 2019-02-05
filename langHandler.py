@@ -13,6 +13,7 @@ def initLang(lang):
         fileName = "./lang/" + lang + ".txt"
     else:
         print("[Info] Unsupported System")
+	#fileName = "./lang/" + lang + ".txt"
         raise SystemError("Unsupported System")
     #fileName =
     #file = open(fileName,"r")
@@ -26,7 +27,7 @@ def initLang(lang):
     for line in content:
         temp = line.split("=")
         try:
-            temp[1] = temp[1][:len(temp[1])-1]
+            temp[1] = temp[1][:len(temp[1])-2]
             out[temp[0]] = temp[1]
         except IndexError:
             linesI += 1

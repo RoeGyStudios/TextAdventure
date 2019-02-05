@@ -1,4 +1,4 @@
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
 from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 import time
@@ -188,8 +188,11 @@ def showMenu():
             #creditsT = ['I', 'd', 'e', 'e', ' ', 'f', 'ü', 'r', ' ', 'd', 'a', 's', ' ', 'T', 'e', 'x', 't', 'A', 'd', 'v', 'e', 'n', 't', 'u', 'r', 'e', ':', ' ', 'M', 'a', 't', 't', 'h', 'i', 'a', 's', ' ', 'H', 'e', 'm', 'i', 'n', 'g', '\n', 'F', 'r', 'a', 'm', 'e', 'w', 'o', 'r', 'k', ':', ' ', 'J', 'o', 's', 'h', 'u', 'a', ' ', 'Z', 'o', 'b', 'e', 'l', ' ', 'u', 'n', 'd', ' ', 'S', 'ö', 'r', 'e', 'n', ' ', 'O', 'e', 's', 't', 'e', 'r', 'w', 'i', 'n', 'd', '\n', 'S', 't', 'o', 'r', 'y', ':', ' ', 'J', 'o', 's', 'h', 'u', 'a', ' ', 'Z', 'o', 'b', 'e', 'l', '\n', 'T', 'e', 'x', 't', 'e', ':', ' ', 'S', 'ö', 'r', 'e', 'n', ' ', 'O', 'e', 's', 't', 'e', 'r', 'w', 'i', 'n', 'd', ' ', 'u', 'n', 'd', ' ', 'J', 'o', 's', 'h', 'u', 'a', ' ', 'Z', 'o', 'b', 'e', 'l', '\n']
             creditsT = "Idee für das TextAdventure: Matthias Heming \nFramework: Joshua Zobel und Sören Oesterwind\nStory: Joshua Zobel\nTexte: Sören Oesterwind und Joshua Zobel\n\n"
             for el in creditsT:
-                print(el,end='')
-                time.sleep(0.2)
+                print(el,end='',flush=True)
+                if el == "\n":
+                    time.sleep(0.5)
+                else:
+                    time.sleep(0.2)
             time.sleep(5)
     ##        time.sleep(5)
     ##        print("Idee für ein TextAdventure: Matthias Heming")

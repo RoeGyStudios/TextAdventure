@@ -1,6 +1,6 @@
 # -*- coding: cp1252 -*-
 from time import *
-from colorama import init, Fore, Back, Style
+#from colorama import init, Fore, Back, Style
 import pickle
 
 class Person():
@@ -54,54 +54,54 @@ class Person():
 
     def getGold(self):
         return(self.gold)
-    def show(self):
-        init()
-        out = ""
-        out += "Name        : " + str(self.name) + "\n"
-        #out += "Gesundheit  : " + str(self.gesundheit) + " "
-        out += "Gesundheit  : %3d "% (self.gesundheit)
-        intTemp = int(self.gesundheit / 10)
-        if intTemp == 100:
-            out += " "
-        elif intTemp > 9 and intTemp < 100:
-            out += "  "
-        else:
-            out += "   "
-        i = 1
-        out += "["
-        while i <= intTemp:
-            if i <= 4:
-                out += Back.RED + " " + Back.RESET
-            if i == 5 or i == 6 or i == 7:
-                out += Back.YELLOW + " " + Back.RESET
-            if i == 8 or i == 9 or i == 10:
-                out += Back.GREEN + " " + Back.RESET
-            i += 1
-        out += "] \n"
-        intTemp = int(self.hunger / 10)
-        
-        #out += str(int(self.hunger / 10))
-        #out += Back.GREEN + " " + Back.RED + " " + Back.RESET + "\n"
-        #out += "Hunger      : " + str(self.hunger)
-        out += "Hunger      : %3d"% (self.hunger)
-        #if intTemp == 100:
-        #   out += " "
-        if intTemp > 9 and intTemp < 100:
-            out += "  "
-        else:
-            out += "   "
-        i = 1
-        out += "["
-        while i <= intTemp:
-            if i <= 4:
-                out += Back.RED + " " + Back.RESET
-            if i == 5 or i == 6 or i == 7:
-                out += Back.YELLOW + " " + Back.RESET
-            if i == 8 or i == 9 or i == 10:
-                out += Back.GREEN + " " + Back.RESET
-            i += 1
-        out += "] \n"
-        out += "Gold        : " + str(self.gold) + "\n"
-        out += "Inventar    : " + str(self.inventar)
-        print(out)
-        
+##    def show(self):
+##        init()
+##        out = ""
+##        out += "Name        : " + str(self.name) + "\n"
+##        #out += "Gesundheit  : " + str(self.gesundheit) + " "
+##        out += "Gesundheit  : %3d "% (self.gesundheit)
+##        intTemp = int(self.gesundheit / 10)
+##        if intTemp == 100:
+##            out += " "
+##        elif intTemp > 9 and intTemp < 100:
+##            out += "  "
+##        else:
+##            out += "   "
+##        i = 1
+##        out += "["
+##        while i <= intTemp:
+##            if i <= 4:
+##                out += Back.RED + " " + Back.RESET
+##            if i == 5 or i == 6 or i == 7:
+##                out += Back.YELLOW + " " + Back.RESET
+##            if i == 8 or i == 9 or i == 10:
+##                out += Back.GREEN + " " + Back.RESET
+##            i += 1
+##        out += "] \n"
+##        intTemp = int(self.hunger / 10)
+##        
+##        #out += str(int(self.hunger / 10))
+##        #out += Back.GREEN + " " + Back.RED + " " + Back.RESET + "\n"
+##        #out += "Hunger      : " + str(self.hunger)
+##        out += "Hunger      : %3d"% (self.hunger)
+##        #if intTemp == 100:
+##        #   out += " "
+##        if intTemp > 9 and intTemp < 100:
+##            out += "  "
+##        else:
+##            out += "   "
+##        i = 1
+##        out += "["
+##        while i <= intTemp:
+##            if i <= 4:
+##                out += Back.RED + " " + Back.RESET
+##            if i == 5 or i == 6 or i == 7:
+##                out += Back.YELLOW + " " + Back.RESET
+##            if i == 8 or i == 9 or i == 10:
+##                out += Back.GREEN + " " + Back.RESET
+##            i += 1
+##        out += "] \n"
+##        out += "Gold        : " + str(self.gold) + "\n"
+##        out += "Inventar    : " + str(self.inventar)
+##        print(out)
+##        
