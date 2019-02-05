@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-
+from __future__ import (absolute_import, division,
+                        print_function, unicode_literals)
 def myInput(prompt):
     try:
         temp = raw_input(prompt)
@@ -75,6 +76,8 @@ class szeneStandart():
         self.__wege[Szname[2]] = self.__links
         self.__wege[Szname[3]] = self.__rechts
         
+        self.__cmd2 = []
+        self.__showCMD = []
         self.__name = name
         self.__besucht = False #Ob die Szene schon besucht wurde ( Boolean )
         self.__debug = debug
@@ -165,15 +168,25 @@ class szeneStandart():
             
             if self.__boarder == True:
                 print("-----------------------------------")
-        
-         
+
+        for item in self.__items:
+                self.__commands[item + " nehmen"] = self.take
+                #print(items)
+        i = 0
+        for el in self.__commands:
+            retval = u"("
+            retval += str(i)
+            retval += u"): "
+            retval += el
+            self.__showCMD.append(retval)
+            self.__cmd2.append(el)
+            i += 1
+        print(self.__cmd2)
         while self.__run == True:
             print("")
             print("Du kannst folgendes tun: ")
-            for item in self.__items:
-                self.__commands[item + " nehmen"] = self.take
-                #print(items)
-            for elemnt in self.__commands:
+            
+            for elemnt in self.__showCMD:
                 print(elemnt)
             whI = 0
             while whI <= 2:
@@ -182,60 +195,71 @@ class szeneStandart():
             temp = myInput("Deine Eingabe > ")
             print("")
             print("")
-            if temp in self.__customText:
-                if self.__commands[temp](self,player) == 1:
-                    del(self.__commands[temp])
-            elif temp in self.__commands:
-                
-                
-                self.__commands[temp](temp)
-            elif temp == "1" or temp == "2" or temp == "3" or temp == "4":
-                if self.__SZname[int(temp)-1] == "off":
-                    print("Unbekannter Befehl")
-                else:
-                    self.gehen(temp)
-            elif temp == "*menu*":
-                self.__pause = True
-                print('''
+            check=0
+            try:
+                check = int(temp)
+            except ValueError:
+                if temp in self.__customText:
+                    if self.__commands[temp](self,player) == 1:
+                        del(self.__commands[temp])
+                elif temp in self.__commands:
+                    self.__commands[temp](temp)
+                elif temp == "*menu*":
+                    self.__pause = True
+                    print('''
 
-          __  __                  
-         |  \/  |                 
-         | \  / | ___ _ __  _   _ 
-         | |\/| |/ _ \ '_ \| | | |
-         | |  | |  __/ | | | |_| |
-         |_|  |_|\___|_| |_|\__,_|
-                          
-                (1) Fortsetzen
-                (2) Speichern
-                (3) Hauptmenu
-                (4) Beenden
+              __  __                  
+             |  \/  |                 
+             | \  / | ___ _ __  _   _ 
+             | |\/| |/ _ \ '_ \| | | |
+             | |  | |  __/ | | | |_| |
+             |_|  |_|\___|_| |_|\__,_|
+                              
+                    (1) Fortsetzen
+                    (2) Speichern
+                    (3) Hauptmenu
+                    (4) Beenden
 
 
-''')
-                tempRun = True
-                while tempRun:
+    ''')
+                    tempRun = True
+                    while tempRun:
+                        
+                        tempIn = myInput("> ")
                     
-                    tempIn = myInput("> ")
-                
-                    if tempIn == "1":
-                        tempRun = False
-                    elif tempIn == "2":
-                        print("Speichere...")
-                        player.speichern()
-                    elif tempIn == "3":
-                        return(-2)
-                    elif tempIn == "4":
-                        print("Wirklich beenden? (y/n)")
-                        temp2 = myInput("-> ")
-                        if temp2 == "y":
-                            exit()
+                        if tempIn == "1":
+                            tempRun = False
+                        elif tempIn == "2":
+                            print("Speichere...")
+                            player.speichern()
+                        elif tempIn == "3":
+                            return(-2)
+                        elif tempIn == "4":
+                            print("Wirklich beenden? (y/n)")
+                            temp2 = myInput("-> ")
+                            if temp2 == "y":
+                                exit()
+                            else:
+                                print("Nicht beenden.")
                         else:
-                            print("Nicht beenden.")
-                    else:
-                        print("Unbekannter Befehl")
-                self.__pause = False
+                            print("Unbekannter Befehl")
+                    self.__pause = False
+                else:
+                    print("Unbekannter Befehl")
             else:
-                print("Unbekannter Befehl")
+                try:
+                    print("---")
+                    print(self.__cmd2[check])
+                    if self.__cmd2[check] in self.__customText:
+                        if self.__commands[self.__cmd2[check]](self,player) == 1:
+                            del(self.__cmd2[check])
+                            del(self.__commands[self.__cmd2[check]])
+                    elif self.__cmd2[check] in self.__cmd2:
+                        tte = str(self.__cmd2[check])
+                        tte = self.__commands[tte]
+                        tte(self.__cmd2[check])
+                except IndexError:
+                    print("Unbekannter Befehl")
         return(self.__ausgang)
     
     def getAufwand(self):
